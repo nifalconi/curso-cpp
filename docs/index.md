@@ -7,7 +7,7 @@
 
 ## 0. Tu primer programa
 
-**Lenguaje: C++**
+Lenguaje: C++
 
 ```cpp
 #include <iostream>
@@ -24,7 +24,7 @@ int main() {
 ## 1. Variables 🧰  
 
 | Tipo | Guarda… | Ejemplo |
-|------|---------|---------|
+| ----- | ------- | ------- |
 | `int` | Enteros | `int edad = 14;` |
 | `float` / `double` | Decimales | `float nota = 6.5f;` |
 | `char` | Una letra | `char inicial = 'A';` |
@@ -175,7 +175,7 @@ cout << p.nombre << " tiene " << p.edad << " años\n";
 ## 10. Truquitos rápidos 🪄✨  
 
 | Truco | Código / Uso | ¿Para qué sirve? |
-|-------|--------------|------------------|
+| ------- | -------------- | ------------------ |
 | **Bucle for-rango** | `for (int x : notas) cout << x << " ";` | Recorre arrays/vectores de forma más limpia. |
 | **`\n` vs `endl`** | `cout << "Hola\n";` | `\n` es más rápido (no vacía el buffer como `endl`). |
 | **`cin.ignore()`** | Después de `cin >>` y antes de `getline` | Evita que un salto de línea pendiente “robe” la entrada. |
