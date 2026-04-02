@@ -1,0 +1,6 @@
+site_name: C++ Summary
+site_url: https://nifalconi.github.io/github-pages/
+theme:
+  name: material
+nav:
+  - Home: index.md
