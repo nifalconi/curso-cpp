@@ -166,7 +166,6 @@ cout << p.nombre << " tiene " << p.edad << " años\n";
 
 - **Comentarios**: `// esto se ignora`.  
 - Marca valores inmutables con **`const`**: `const float PI = 3.14159f;`.  
-- Usa **`auto`** para tipos obvios: `auto total = suma(2,3);`.  
 - Practica con mini-proyectos: calculadora, “adivina el número”, lista de compras.  
 
 ---
