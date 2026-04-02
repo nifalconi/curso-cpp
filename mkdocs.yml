@@ -2,5 +2,9 @@ site_name: C++ Summary
 site_url: https://nifalconi.github.io/github-pages/
 theme:
   name: material
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
 nav:
   - Home: index.md
