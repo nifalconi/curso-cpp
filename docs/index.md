@@ -39,17 +39,18 @@ int main() {
 
 ```cpp
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main() {
     int edad;
-    cout << "¿Edad? ";
+    cout << "Cual es tu edad? ";
     cin  >> edad;
-    cout << "Tienes " << edad << " años\n";
+    cout << "Tienes " << edad << " anos\n";
 
     string nombre;
-    cin.ignore();          // ← truco: limpia el salto pendiente
-    getline(cin, nombre);  // Lee texto con espacios
+    cin.ignore();
+    getline(cin, nombre);
     cout << "Hola " << nombre << "\n";
     return 0;
 }
@@ -179,6 +180,7 @@ int main() {
 
 ```cpp
 #include <iostream>
+#include <string>
 using namespace std;
 
 int suma(int a, int b) {
@@ -202,6 +204,7 @@ int main() {
 
 ```cpp
 #include <iostream>
+#include <string>
 using namespace std;
 
 struct Persona {

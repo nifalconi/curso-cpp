@@ -182,30 +182,42 @@ function initCppRunners () {
 
       // Ejecutar
       btnRun.addEventListener('click', function () {
-        if (typeof JSCPP === 'undefined') {
-          outputContent.textContent =
-            '⏳ Cargando interprete, intenta de nuevo en un segundo...'
-          outputDiv.classList.add('cpp-output--visible')
-          return
-        }
         var userInput = inputField ? inputField.value : ''
-        var output = ''
-        var config = {
-          stdio: {
-            write: function (s) {
-              output += s
-            }
-          }
-        }
-        try {
-          JSCPP.run(cm.getValue(), userInput, config)
-          outputContent.textContent = output || '(sin salida)'
-          outputContent.classList.remove('cpp-output-error')
-        } catch (e) {
-          outputContent.textContent = '❌ ' + (e.message || String(e))
-          outputContent.classList.add('cpp-output-error')
-        }
+        outputContent.textContent = '⏳ Compilando...'
+        outputContent.classList.remove('cpp-output-error')
         outputDiv.classList.add('cpp-output--visible')
+        btnRun.disabled = true
+
+        fetch('https://wandbox.org/api/compile.json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            code: cm.getValue(),
+            compiler: 'gcc-head',
+            stdin: userInput
+          })
+        })
+          .then(function (res) {
+            return res.json()
+          })
+          .then(function (data) {
+            var out = data.program_output || ''
+            var err = data.compiler_error || data.program_error || ''
+            if (data.status !== '0' || err) {
+              outputContent.textContent = '❌ ' + (err || 'Error desconocido')
+              outputContent.classList.add('cpp-output-error')
+            } else {
+              outputContent.textContent = out || '(sin salida)'
+              outputContent.classList.remove('cpp-output-error')
+            }
+          })
+          .catch(function (e) {
+            outputContent.textContent = '❌ Error de conexion: ' + e.message
+            outputContent.classList.add('cpp-output-error')
+          })
+          .finally(function () {
+            btnRun.disabled = false
+          })
       })
 
       // Copiar
