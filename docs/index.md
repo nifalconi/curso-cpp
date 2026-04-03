@@ -1,7 +1,7 @@
 
 # 🌟 Resumen exprés de C++ — versión mejorada + truquitos 🌟  
 
-*(Pensado para estudiantes que recién empiezan)*  
+*Pensado para estudiantes que recién empiezan.*
 
 ---
 
@@ -38,16 +38,22 @@ int main() {
 ## 2. Entrada / Salida 💬
 
 ```cpp
-int edad;
-cout << "¿Edad? ";
-cin  >> edad;
+#include <iostream>
+#include <string>
+using namespace std;
 
-// concatenar
-cout << arreglo[i] << " " << "hola";
+int main() {
+    int edad;
+    cout << "¿Edad? ";
+    cin  >> edad;
+    cout << "Tienes " << edad << " años\n";
 
-string nombre;
-cin.ignore();          // ← truco: limpia el salto pendiente
-getline(cin, nombre);  // Lee texto con espacios
+    string nombre;
+    cin.ignore();          // ← truco: limpia el salto pendiente
+    getline(cin, nombre);  // Lee texto con espacios
+    cout << "Hola " << nombre << "\n";
+    return 0;
+}
 ```
 
 ---
@@ -55,12 +61,19 @@ getline(cin, nombre);  // Lee texto con espacios
 ## 3. Condicionales 🔀
 
 ```cpp
-if (edad >= 18) {
-    cout << "Mayor de edad\n";
-} else if (edad >= 13) {
-    cout << "Adolescente\n";
-} else {
-    cout << "Niña/o\n";
+#include <iostream>
+using namespace std;
+
+int main() {
+    int edad = 15;
+    if (edad >= 18) {
+        cout << "Mayor de edad\n";
+    } else if (edad >= 13) {
+        cout << "Adolescente\n";
+    } else {
+        cout << "Niña/o\n";
+    }
+    return 0;
 }
 ```
 
@@ -71,21 +84,33 @@ if (edad >= 18) {
 ### `for` – veces conocidas
 
 ```cpp
-for (int i = 0; i < 5; ++i) {
-    cout << i << " ";      // 0 1 2 3 4 
+#include <iostream>
+using namespace std;
+
+int main() {
+    for (int i = 0; i < 5; ++i) {
+        cout << i << " ";      // 0 1 2 3 4
+    }
+    cout << "\n";
+    return 0;
 }
-cout << "\n";
 ```
 
 ### `while` – mientras se cumpla algo
 
 ```cpp
-int i = 0;
-while (i < 3) {
-    cout << i << " ";      // 0 1 2 
-    ++i;
+#include <iostream>
+using namespace std;
+
+int main() {
+    int i = 0;
+    while (i < 3) {
+        cout << i << " ";      // 0 1 2
+        ++i;
+    }
+    cout << "\n";
+    return 0;
 }
-cout << "\n";
 ```
 
 ---
@@ -93,14 +118,20 @@ cout << "\n";
 ## 5. Arreglos (arrays) 📦
 
 ```cpp
-int notas[3] = {7, 6, 5};
+#include <iostream>
+using namespace std;
 
-int tam = sizeof(notas) / sizeof(notas[0]);   // tamaño
+int main() {
+    int notas[3] = {7, 6, 5};
 
-for (int i = 0; i < tam; ++i) {
-    cout << notas[i] << " ";                  // 7 6 5 
+    int tam = sizeof(notas) / sizeof(notas[0]);   // tamaño
+
+    for (int i = 0; i < tam; ++i) {
+        cout << notas[i] << " ";                  // 7 6 5
+    }
+    cout << "\n";
+    return 0;
 }
-cout << "\n";
 ```
 
 > 🔒 El tamaño es fijo; no puede crecer.
@@ -110,24 +141,37 @@ cout << "\n";
 ## 6. Vectores (`std::vector`) 🪄
 
 ```cpp
+#include <iostream>
 #include <vector>
 using namespace std;
 
-vector<int> edades = {10, 12};
-edades.push_back(14);
+int main() {
+    vector<int> edades = {10, 12};
+    edades.push_back(14);
 
-for (size_t i = 0; i < edades.size(); ++i) {
-    cout << edades[i] << " ";                 // 10 12 14 
+    for (size_t i = 0; i < edades.size(); ++i) {
+        cout << edades[i] << " ";             // 10 12 14
+    }
+    cout << "\n";
+    return 0;
 }
-cout << "\n";
 ```
 
 Funciones útiles:
 
 ```cpp
-edades.back();    // Último elemento
-edades.size();    // Cantidad total
-edades.clear();   // Vaciar el vector
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> edades = {10, 12, 14};
+    cout << edades.back() << "\n";    // Último elemento: 14
+    cout << edades.size() << "\n";    // Cantidad total: 3
+    edades.clear();                   // Vaciar el vector
+    cout << edades.size() << "\n";    // Ahora: 0
+    return 0;
+}
 ```
 
 ---
@@ -135,6 +179,10 @@ edades.clear();   // Vaciar el vector
 ## 7. Funciones ⚙️
 
 ```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
 int suma(int a, int b) {
     return a + b;
 }
@@ -143,9 +191,11 @@ void saludar(const string& n) {
     cout << "Hola " << n << "!\n";
 }
 
-// Uso
-cout << suma(3, 4) << "\n";   // 7
-saludar("Sofía");
+int main() {
+    cout << suma(3, 4) << "\n";   // 7
+    saludar("Sofia");
+    return 0;
+}
 ```
 
 ---
@@ -153,13 +203,22 @@ saludar("Sofía");
 ## 8. Structs 👩‍👧‍👧
 
 ```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
 struct Persona {
     string nombre;
     int    edad;
 };
 
-Persona p{"Camila", 15};
-cout << p.nombre << " tiene " << p.edad << " años\n";
+int main() {
+    Persona p;
+    p.nombre = "Camila";
+    p.edad = 15;
+    cout << p.nombre << " tiene " << p.edad << " anos\n";
+    return 0;
+}
 ```
 
 ---
